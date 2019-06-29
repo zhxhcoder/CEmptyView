@@ -1,21 +1,23 @@
 package com.creditease.cemptyview;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.constraint.Guideline;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+
+import com.creditease.ctextview.CTextView;
 
 /**
  * Created by zhxh on 2019/06/26
  */
-public class CEmptyView extends LinearLayout {
+public class CEmptyView extends ConstraintLayout {
 
     ImageView ivEmptyImg;
     Guideline lineEmpty;
-    CEmptyView tvEmptyTitle;
+    CTextView tvEmptyTitle;
 
     public CEmptyView(Context context) {
         super(context);
@@ -38,6 +40,45 @@ public class CEmptyView extends LinearLayout {
         ivEmptyImg = rootView.findViewById(R.id.ivEmptyImg);
         lineEmpty = rootView.findViewById(R.id.lineEmpty);
         tvEmptyTitle = rootView.findViewById(R.id.tvEmptyTitle);
-
     }
+
+    public CTextView getCText() {
+        return tvEmptyTitle;
+    }
+
+    public CEmptyView withPos(float percent) {
+        lineEmpty.setGuidelinePercent(percent);
+        return this;
+    }
+
+    public CEmptyView withImg(int resId) {
+        ivEmptyImg.setImageResource(resId);
+        return this;
+    }
+
+    public CEmptyView withTxt(CharSequence title) {
+        tvEmptyTitle.setText(title);
+        return this;
+    }
+
+    public void withCallback(final CallbackFunction function) {
+        ivEmptyImg.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                function.invoke();
+            }
+        });
+
+        tvEmptyTitle.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                function.invoke();
+            }
+        });
+    }
+
+    public interface CallbackFunction {
+        void invoke();
+    }
+
 }
