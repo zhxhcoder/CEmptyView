@@ -62,19 +62,8 @@ public class CEmptyView extends ConstraintLayout {
     }
 
     public void withCallback(final CallbackFunction function) {
-        ivEmptyImg.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                function.invoke();
-            }
-        });
-
-        tvEmptyTitle.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                function.invoke();
-            }
-        });
+        ivEmptyImg.setOnClickListener(v -> function.invoke());
+        tvEmptyTitle.setOnClickListener(v -> function.invoke());
     }
 
     public interface CallbackFunction {
