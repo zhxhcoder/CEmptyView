@@ -43,6 +43,7 @@ public class CEmptyView extends ConstraintLayout {
 
         View rootView = mInflater.inflate(R.layout.cempty_view_layout, this);
 
+        containerEmpty = rootView.findViewById(R.id.containerEmpty);
         ivEmptyImg = rootView.findViewById(R.id.ivEmptyImg);
         lineEmpty = rootView.findViewById(R.id.lineEmpty);
         tvEmptyTitle = rootView.findViewById(R.id.tvEmptyTitle);
