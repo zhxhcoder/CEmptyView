@@ -6,6 +6,7 @@ import android.support.constraint.Guideline;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.creditease.ctextview.CTextView;
@@ -15,9 +16,12 @@ import com.creditease.ctextview.CTextView;
  */
 public class CEmptyView extends ConstraintLayout {
 
+    FrameLayout containerEmpty;
     ImageView ivEmptyImg;
     Guideline lineEmpty;
     CTextView tvEmptyTitle;
+
+    private LayoutInflater mInflater; // LayoutInflater
 
     public CEmptyView(Context context) {
         super(context);
@@ -35,7 +39,9 @@ public class CEmptyView extends ConstraintLayout {
     }
 
     private void initView(Context context) {
-        View rootView = LayoutInflater.from(context).inflate(R.layout.cempty_view_layout, this);
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View rootView = mInflater.inflate(R.layout.cempty_view_layout, this);
 
         ivEmptyImg = rootView.findViewById(R.id.ivEmptyImg);
         lineEmpty = rootView.findViewById(R.id.lineEmpty);
@@ -66,13 +72,17 @@ public class CEmptyView extends ConstraintLayout {
         tvEmptyTitle.setOnClickListener(v -> function.invoke());
     }
 
+    public void setEmptyView(View emptyView) {
+        containerEmpty.removeAllViews();
+        containerEmpty.addView(emptyView);
+    }
 
-    public void setLayout(int resId) {
-
+    public void setEmptyView(int resId) {
+        View view = mInflater.inflate(resId, null);
+        setEmptyView(view);
     }
 
     public interface CallbackFunction {
         void invoke();
     }
-
 }
