@@ -21,7 +21,7 @@ public class CEmptyView extends ConstraintLayout {
     Guideline lineEmpty;
     CTextView tvEmptyTitle;
 
-    private LayoutInflater mInflater; // LayoutInflater
+    private LayoutInflater mInflater;
 
     public CEmptyView(Context context) {
         super(context);
@@ -73,6 +73,7 @@ public class CEmptyView extends ConstraintLayout {
     }
 
     public void setEmptyView(View emptyView) {
+        containerEmpty.setVisibility(VISIBLE);
         containerEmpty.removeAllViews();
         containerEmpty.addView(emptyView);
     }
