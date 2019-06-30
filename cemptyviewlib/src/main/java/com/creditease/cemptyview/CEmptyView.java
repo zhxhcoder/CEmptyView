@@ -66,6 +66,11 @@ public class CEmptyView extends ConstraintLayout {
         tvEmptyTitle.setOnClickListener(v -> function.invoke());
     }
 
+
+    public void setLayout(int resId) {
+
+    }
+
     public interface CallbackFunction {
         void invoke();
     }
