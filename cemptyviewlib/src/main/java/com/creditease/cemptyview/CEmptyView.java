@@ -84,6 +84,11 @@ public class CEmptyView extends ConstraintLayout {
         setEmptyView(view);
     }
 
+    public void setDefaultEmptyView() {
+        //TODO 默认的
+
+    }
+
     public interface CallbackFunction {
         void invoke();
     }
